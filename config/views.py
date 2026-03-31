@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login , logout
 from products.models import Product
 from inventory.models import Inventory
 from billing.models import Bill
+from accounts.models import UserProfile
 
 
 def home(request):
@@ -15,34 +16,25 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        role = request.POST['role']
 
         user = authenticate(request, username=username, password=password)
 
-        if user:
-            # 🔥 ADMIN LOGIN (superuser only)
-            if role == "admin":
-                if user.is_superuser:
-                    login(request, user)
-                    return redirect('/dashboard/')
-                else:
-                    return render(request, 'login.html', {'error': 'Not an admin user'})
+        if user is not None:
+            login(request, user)
 
-            # 🔥 MANAGER LOGIN
-            elif role == "manager":
-                if user.groups.filter(name='Manager').exists():
-                    login(request, user)
-                    return redirect('/inventory/')
-                else:
-                    return render(request, 'login.html', {'error': 'Not a manager'})
+            # ADMIN LOGIN
+            if user.is_superuser:
+                return redirect('/dashboard/')
+            
+            profile = UserProfile.objects.get(user=user)   
+            # MANAGER LOGIN
+            if profile.role == "manager":
+                return redirect('/inventory/')
+               
 
-            # 🔥 STAFF LOGIN
-            elif role == "staff":
-                login(request, user)
+            # STAFF LOGIN
+            elif profile.role == "staff":
                 return redirect('/billing/')
-
-            else:
-                return render(request, 'login.html', {'error': 'Select a role'})
 
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})

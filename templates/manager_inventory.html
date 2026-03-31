@@ -1,0 +1,35 @@
+{% extends 'manager_base.html' %}
+
+{% block content %}
+
+<h2>Inventory</h2>
+
+{% for section in data %}
+
+<h3>{{ section.category.name }}</h3>
+
+<table border="1">
+<tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Update</th>
+</tr>
+
+{% for item in section.items %}
+<tr>
+    <td>{{ item.product.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>
+        <a href="/inventory/?add={{ item.id }}">+</a>
+        <a href="/inventory/?remove={{ item.id }}">-</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+{% endfor %}
+
+{% endblock %}

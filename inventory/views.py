@@ -4,26 +4,31 @@ from products.models import Category
 
 def inventory_page(request):
 
-    # 🔥 UPDATE STOCK
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+
+    # CHECK ROLE
+    role = request.user.userprofile.role
+
+    if role not in ['admin', 'manager']:
+        return redirect('/login/')
+
+    # STOCK UPDATE
     if request.GET.get('add'):
-        inv_id = request.GET.get('add')
-        inventory = Inventory.objects.get(id=inv_id)
-        inventory.quantity += 1
-        inventory.save()
+        inv = Inventory.objects.get(id=request.GET.get('add'))
+        inv.quantity += 1
+        inv.save()
         return redirect('/inventory/')
 
     if request.GET.get('remove'):
-        inv_id = request.GET.get('remove')
-        inventory = Inventory.objects.get(id=inv_id)
+        inv = Inventory.objects.get(id=request.GET.get('remove'))
 
-        # ❗ PREVENT NEGATIVE
-        if inventory.quantity > 0:
-            inventory.quantity -= 1
-            inventory.save()
+        if inv.quantity > 0:
+            inv.quantity -= 1
+            inv.save()
 
         return redirect('/inventory/')
 
-    # 🔥 GROUP BY CATEGORY
     categories = Category.objects.all()
 
     data = []
@@ -34,6 +39,10 @@ def inventory_page(request):
             'items': items
         })
 
-    return render(request, 'inventory.html', {
-        'data': data
-    })
+    # CHOOSE TEMPLATE BASED ON ROLE
+    template = 'inventory.html'
+
+    if role == 'manager':
+        template = 'manager_inventory.html'
+
+    return render(request, template, {'data': data})
