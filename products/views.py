@@ -20,7 +20,7 @@ def product_management(request):
 
         return redirect('/products/')
 
-    # 🔥 2. POST LOGIC (ADD CATEGORY / PRODUCT)
+    # POST LOGIC (ADD CATEGORY / PRODUCT)
     if request.method == "POST":
 
         # CATEGORY ADD
@@ -54,7 +54,7 @@ def product_management(request):
 
                 return redirect('/products/')
 
-    # 🔥 3. FETCH DATA (LAST)
+    # FETCH DATA 
     categories = Category.objects.all()
     products = Product.objects.all()
 

@@ -20,29 +20,30 @@ class BillItem(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
 
-    def save(self,*args,**kwargs):
+    def save(self, *args, **kwargs):
 
-        inventory = inventory.objects.get(product=self.product)
+    #get inventory
+        try:
+            inventory_obj = Inventory.objects.get(product=self.product)
+        except Inventory.DoesNotExist:
+            raise ValidationError("Inventory not found")
 
-        if self.quantity<=0:
+    #validation
+        if self.quantity <= 0:
             raise ValidationError("Quantity must be greater than 0")
 
-        if self.quantity<inventory.quantity:
-            raise ValidationError("Not enough Stock")
+        if self.quantity > inventory_obj.quantity:
+            raise ValidationError("Not enough stock")
 
-        self.price=self.product.price*self.quantity
+    #set price (per item)
+        self.price = self.product.price
 
-        self.inventory.quantity-=self.quantity
-        inventory.save()
+    #reduce inventory
+        inventory_obj.quantity -= self.quantity
+        inventory_obj.save()
 
-        super().save(*args,**kwargs)
-
-        total=0
-        for item in self.bill.items.all:
-            total+=item.price
-
-        self.bill.total=total
-        self.bill.save()
+    #save bill item
+        super().save(*args, **kwargs)
         
 
     def __str__(self):

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Panel</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Staff Panel</h2>
+    <a href="/billing/">Billing</a>
+    <a href="/logout/">Logout</a>
+    <a href="/billing/details/">Bill History</a>
+</div>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
