@@ -25,4 +25,6 @@ urlpatterns = [
     path('dashboard/',dashboard),
     path('logout/',logout_view),
     path('products/', include('products.urls')),
+    path('users/', include('accounts.urls')),
+    path('inventory/', include('inventory.urls')),
 ]

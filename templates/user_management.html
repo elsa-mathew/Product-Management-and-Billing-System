@@ -1,0 +1,93 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h2>User Management</h2>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<h3>Add User</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="Username"><br><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+
+    <select name="role">
+        <option value="">Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+        <option value="staff">Staff</option>
+    </select><br><br>
+
+    <button type="submit">Add User</button>
+</form>
+
+<hr>
+
+<h3>Users</h3>
+
+<h3>Admins</h3>
+
+<table border="1">
+<tr>
+    <th>Username</th>
+    <th>Action</th>
+</tr>
+
+{% for user in admins %}
+<tr>
+    <td>{{ user.user.username }}</td>
+    <td>
+        <a href="/users/?delete_user={{ user.user.id }}">Delete</a>
+    </td>
+</tr>
+{% empty %}
+<tr><td colspan="2">No Admins</td></tr>
+{% endfor %}
+</table>
+
+<h3>Managers</h3>
+
+<table border="1">
+<tr>
+    <th>Username</th>
+    <th>Action</th>
+</tr>
+
+{% for user in managers %}
+<tr>
+    <td>{{ user.user.username }}</td>
+    <td>
+        <a href="/users/?delete_user={{ user.user.id }}">Delete</a>
+    </td>
+</tr>
+{% empty %}
+<tr><td colspan="2">No Managers</td></tr>
+{% endfor %}
+</table>
+
+<h3>Staff</h3>
+
+<table border="1">
+<tr>
+    <th>Username</th>
+    <th>Action</th>
+</tr>
+
+{% for user in staffs %}
+<tr>
+    <td>{{ user.user.username }}</td>
+    <td>
+        <a href="/users/?delete_user={{ user.user.id }}">Delete</a>
+    </td>
+</tr>
+{% empty %}
+<tr><td colspan="2">No Staff</td></tr>
+{% endfor %}
+</table>
+
+{% endblock %}

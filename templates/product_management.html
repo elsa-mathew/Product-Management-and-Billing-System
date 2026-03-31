@@ -4,11 +4,11 @@
 
 <h2>Product Management</h2>
 
-<!-- 🔥 CATEGORY SECTION -->
+
 <h3>Add Category</h3>
 
 {% if error %}
-    <p style="color:red;">{{ error }}</p>
+    <p>{{ error }}</p>
 {% endif %}
 
 <form method="POST">
@@ -31,8 +31,8 @@
 
 <hr>
 
-<!-- 🔥 PRODUCT SECTION -->
-<<h3>Add Product</h3>
+
+<h3>Add Product</h3>
 
 <form method="POST">
     {% csrf_token %}

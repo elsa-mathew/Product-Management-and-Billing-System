@@ -1,20 +1,30 @@
 from django.shortcuts import render, redirect
 from .models import Category, Product
+from inventory.models import Inventory
 
 def product_management(request):
 
     error = ""
 
-    # 👉 DELETE CATEGORY
-    if request.GET.get('delete_category'):
-        cat_id = request.GET.get('delete_category')
-        Category.objects.filter(id=cat_id).delete()
+    # DELETE LOGIC 
+    if request.GET.get('delete_product'):
+        product_id = request.GET.get('delete_product')
+
+        product = Product.objects.get(id=product_id)
+
+        # delete inventory first
+        Inventory.objects.filter(product=product).delete()
+
+        # delete product
+        product.delete()
+
         return redirect('/products/')
 
+    # 🔥 2. POST LOGIC (ADD CATEGORY / PRODUCT)
     if request.method == "POST":
 
-        # 👉 CATEGORY ADD
-        if request.POST.get('category_name') is not None:
+        # CATEGORY ADD
+        if request.POST.get('category_name'):
             name = request.POST.get('category_name')
 
             if not name:
@@ -23,39 +33,28 @@ def product_management(request):
                 Category.objects.create(name=name)
                 return redirect('/products/')
 
-        # 👉 PRODUCT ADD
-        elif request.POST.get('product_name') is not None:
+        # PRODUCT ADD
+        elif request.POST.get('product_name'):
             name = request.POST.get('product_name')
             price = request.POST.get('price')
             category_id = request.POST.get('category')
 
-    # 🔥 VALIDATION
-            if not name:
-                error = "Product name cannot be empty"
-
-            elif not price:
-                error = "Price cannot be empty"
-
-            elif not category_id:
-                error = "Please select a category"
-
-            elif float(price) <= 0:
-                error = "Price must be greater than 0"
-
+            if not name or not price or not category_id:
+                error = "All fields required"
             else:
-                # ✅ CHECK DUPLICATE (optional but good)
-                if Product.objects.filter(name=name).exists():
-                    error = "Product already exists"
-                else:
-                    category = Category.objects.get(id=category_id)
+                category = Category.objects.get(id=category_id)
 
-                    Product.objects.create(
-                        name=name,
-                        price=price,
-                        category=category
-                    )
+                product = Product.objects.create(
+                    name=name,
+                    price=price,
+                    category=category
+                )
 
-                    return redirect('/products/')
+                Inventory.objects.create(product=product, quantity=0)
+
+                return redirect('/products/')
+
+    # 🔥 3. FETCH DATA (LAST)
     categories = Category.objects.all()
     products = Product.objects.all()
 
