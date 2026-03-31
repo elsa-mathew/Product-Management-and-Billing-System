@@ -1,0 +1,78 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h2>Product Management</h2>
+
+<!-- 🔥 CATEGORY SECTION -->
+<h3>Add Category</h3>
+
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="category_name" placeholder="Category Name">
+    <button type="submit">Add Category</button>
+</form>
+
+<h3>Categories</h3>
+<ul>
+    {% for cat in categories %}
+        <li>
+            {{ cat.name }}
+            <a href="/products/?delete_category={{ cat.id }}" style="color:red;">
+                Delete
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<!-- 🔥 PRODUCT SECTION -->
+<<h3>Add Product</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="product_name" placeholder="Product Name"><br><br>
+
+    <input type="number" name="price" placeholder="Price"><br><br>
+
+    <select name="category">
+        <option value="">Select Category</option>
+        {% for cat in categories %}
+            <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Add Product</button>
+</form>
+
+<h3>Products</h3>
+
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Action</th>
+</tr>
+
+{% for product in products %}
+<tr>
+    <td>{{ product.name }}</td>
+    <td>{{ product.price }}</td>
+    <td>{{ product.category.name }}</td>
+    <td>
+        <a href="/products/?delete_product={{ product.id }}" style="color:red;">
+            Delete
+        </a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

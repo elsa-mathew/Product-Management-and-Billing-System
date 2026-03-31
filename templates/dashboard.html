@@ -1,0 +1,29 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Products</h3>
+        <p>{{ total_products }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Stock</h3>
+        <p>{{ total_stock }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Bills</h3>
+        <p>{{ total_bills }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <p>{{ total_revenue }}</p>
+    </div>
+</div>
+
+{% endblock %}
