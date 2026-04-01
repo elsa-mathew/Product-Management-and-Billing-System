@@ -1,26 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Dashboard</title>
 
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+    {% block extra_css %}{% endblock %}
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>Admin</h2>
-    <a href="/dashboard/">Dashboard</a>
-    <a href="/products/">Products</a>
-    <a href="/inventory/">Inventory</a>
-    <a href="/users/">Users</a>
-    <a href="/revenue/">Revenue</a>
-    <a href="/logout/">Logout</a>
-</div>
+<div class="layout">
 
-<div class="main-content">
-    {% block content %}
-    {% endblock %}
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Admin</h2>
+
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/products/">Products</a>
+        <a href="/inventory/">Inventory</a>
+        <a href="/users/">Users</a>
+        <a href="/billing/details/">Bill</a>
+
+        <a href="/logout/" class="logout">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+
 </div>
 
 </body>

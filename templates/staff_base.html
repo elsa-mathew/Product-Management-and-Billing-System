@@ -1,21 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Staff Panel</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+
+    <link rel="stylesheet" href="{% static 'css/staff.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
-<body>
 
-<div class="sidebar">
-    <h2>Staff Panel</h2>
-    <a href="/billing/">Billing</a>
-    <a href="/logout/">Logout</a>
-    <a href="/billing/details/">Bill History</a>
-</div>
+<body class="staff-body">
 
-<div class="content">
-    {% block content %}{% endblock %}
-</div>
+    <!-- NAVBAR -->
+    <div class="staff-navbar">
+        <h2 class="logo">Staff</h2>
+
+        <div class="nav-links">
+            <a href="/staff/dashboard/">Dashboard</a>
+            <a href="/billing/">Billing</a>
+            <a href="/billing/details/">Bill History</a>
+            <a href="/logout/" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="staff-content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </body>
 </html>

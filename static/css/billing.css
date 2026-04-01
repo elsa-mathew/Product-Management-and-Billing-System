@@ -1,0 +1,117 @@
+/* Container */
+.billing-container {
+    padding: 20px;
+}
+
+/* Title */
+.page-title {
+    margin-bottom: 20px;
+}
+
+/* Card */
+.bill-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 60%;
+}
+
+/* Table */
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header */
+.bill-table th {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Cells */
+.bill-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover */
+.bill-table tr:hover {
+    background: #f9f9f9;
+}
+
+/* Amount */
+.amount {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+/* View button */
+.btn-view {
+    background: #3498db;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-view:hover {
+    background: #2980b9;
+}
+
+
+/*view page*/
+
+/* Invoice card */
+.invoice-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    width: 70%;
+    margin: auto;
+}
+
+/* Header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Table reuse (already exists) */
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Total */
+.invoice-total {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+/* Actions */
+.invoice-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* Print button */
+.btn-print {
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-print:hover {
+    background: #2980b9;
+}

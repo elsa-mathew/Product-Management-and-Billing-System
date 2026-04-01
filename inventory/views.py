@@ -6,26 +6,26 @@ def inventory_page(request):
 
     if not request.user.is_authenticated:
         return redirect('/login/')
-
-    # CHECK ROLE
-    role = request.user.userprofile.role
-
+    profile = getattr(request.user, 'userprofile', None)
+    if request.user.is_superuser:
+        role = 'admin'
+    else:
+        role = profile.role
     if role not in ['admin', 'manager']:
         return redirect('/login/')
 
-    # STOCK UPDATE
-    if request.GET.get('add'):
-        inv = Inventory.objects.get(id=request.GET.get('add'))
-        inv.quantity += 1
-        inv.save()
+    if request.GET.get('add'):                                          #update stock in inventory by 10
+        inventory = Inventory.objects.get(id=request.GET.get('add'))
+        inventory.quantity += 10
+        inventory.save()
         return redirect('/inventory/')
 
-    if request.GET.get('remove'):
-        inv = Inventory.objects.get(id=request.GET.get('remove'))
+    if request.GET.get('remove'):                                       #remove stock in inventory by 1
+        inventory = Inventory.objects.get(id=request.GET.get('remove'))
 
-        if inv.quantity > 0:
-            inv.quantity -= 1
-            inv.save()
+        if inventory.quantity > 0:
+            inventory.quantity -= 1
+            inventory.save()
 
         return redirect('/inventory/')
 
@@ -33,13 +33,29 @@ def inventory_page(request):
 
     data = []
     for cat in categories:
-        items = Inventory.objects.filter(product__category=cat)
+        items = Inventory.objects.filter(product__category_id=cat.id)
+        item_list = []
+
+        for item in items:
+            quantity = item.quantity
+
+            if quantity < 5:
+                status = "Out of Stock"
+            elif quantity < 15:
+                status = "Low Stock"
+            else:
+                status = "In Stock"
+
+            item_list.append({
+                'object' : item,
+                'status' : status
+            })
         data.append({
             'category': cat,
-            'items': items
+            'items': item_list
         })
 
-    # CHOOSE TEMPLATE BASED ON ROLE
+    
     template = 'inventory.html'
 
     if role == 'manager':

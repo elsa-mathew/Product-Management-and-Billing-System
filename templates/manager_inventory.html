@@ -1,35 +1,51 @@
 {% extends 'manager_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/inventory.css' %}">
+{% endblock %}
 
 {% block content %}
+
+<div class="container">
 
 <h2>Inventory</h2>
 
 {% for section in data %}
 
-<h3>{{ section.category.name }}</h3>
+<div class="inventory-card">
+    <h3>{{ section.category.name }}</h3>
 
-<table border="1">
-<tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Update</th>
-</tr>
+    <table class="inventory-table">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Update</th>
+        </tr>
 
-{% for item in section.items %}
-<tr>
-    <td>{{ item.product.name }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>
-        <a href="/inventory/?add={{ item.id }}">+</a>
-        <a href="/inventory/?remove={{ item.id }}">-</a>
-    </td>
-</tr>
+        {% if section.items %}
+            {% for item in section.items %}
+            <tr>
+                <td>{{ item.object.product.name }}</td>
+                <td>{{ item.object.quantity }}</td>
+
+                <td>
+                    <a href="?add={{ item.object.id }}" class="btn add">+</a>
+                    <a href="?remove={{ item.object.id }}" class="btn remove">-</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">No Products</td>
+        </tr>
+        {% endif %}
+    </table>
+
+</div>
+
 {% endfor %}
 
-</table>
-
-<br>
-
-{% endfor %}
+</div>
 
 {% endblock %}

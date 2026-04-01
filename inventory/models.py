@@ -3,7 +3,7 @@ from products.models import Product
 
 class Inventory(models.Model):
 
-    product = models.OneToOneField(Product , on_delete=models.PROTECT)
+    product = models.OneToOneField(Product , on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
     def stock(self):

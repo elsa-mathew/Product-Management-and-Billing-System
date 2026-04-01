@@ -1,0 +1,105 @@
+/* Layout */
+.billing-container {
+    padding: 25px;
+}
+
+/* Title */
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form Row */
+.billing-form form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+.billing-form select,
+.billing-form input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 150px;
+}
+
+/* Table */
+.billing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Table Header */
+.billing-table th {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Table Rows */
+.billing-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Hover effect */
+.billing-table tr:hover {
+    background: #f9f9f9;
+}
+
+/* Total Box */
+.total-box {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    background: #ecf0f1;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #3498db;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+/* Generate Button */
+.btn-success {
+    margin-top: 15px;
+    background: #27ae60;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background: #1e8449;
+}
+
+.alert {
+    background: #ffe0e0;
+    color: #b30000;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}

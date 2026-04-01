@@ -1,0 +1,46 @@
+/* Body */
+.staff-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+/* Navbar */
+.staff-navbar {
+    background: #34495e;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    margin: 0;
+}
+
+/* Links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+/* Hover */
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Logout */
+.logout-btn {
+    background: #e74c3c;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+/* Content */
+.staff-content {
+    padding: 20px;
+}

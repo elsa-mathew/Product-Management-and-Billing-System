@@ -1,0 +1,43 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="product-container">
+
+    <h2 class="page-title">Categories</h2>
+
+    <div class="section">
+
+        <table class="data-table">
+            <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Action</th>
+            </tr>
+
+            {% for cat in categories %}
+            <tr>
+                <td>{{ cat.id }}</td>
+                <td>{{ cat.name }}</td>
+                <td>
+                    <a href="?delete={{ cat.id }}" class="btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No Categories Found</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'staff_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/staff_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <h2 class="page-title">Staff Dashboard</h2>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Bills</h3>
+            <p>{{ total_bills }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Today's Bills</h3>
+            <p>{{ today_bills }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

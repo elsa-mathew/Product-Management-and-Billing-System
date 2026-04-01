@@ -1,23 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manager Panel</title>
 
-    {% load static %}
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/manager.css' %}">
+
+    {% block extra_css %}{% endblock %}
 </head>
-<body>
 
-<div class="sidebar">
-    <h2>Manager</h2>
-    <a href="/inventory/">Inventory</a>
-    <a href="/logout/">Logout</a>
-</div>
+<body class="manager-body">
 
-<div class="main-content">
-    {% block content %}
-    {% endblock %}
-</div>
+    <!-- NAVBAR -->
+    <div class="manager-navbar">
+        <h2 class="logo">Manager</h2>
+
+        <div class="nav-links">
+            <a href="/manager/dashboard/">Dashboard</a>
+            <a href="/inventory/">Inventory</a>
+            <a href="/logout/" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="manager-content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </body>
 </html>

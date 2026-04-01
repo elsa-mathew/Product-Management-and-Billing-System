@@ -1,55 +1,83 @@
 {% extends 'staff_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/add_bill.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h2>Billing</h2>
-{% if request.GET.success %}
-<script>
-    alert("Bill generated successfully!");
-</script>
-{% endif %}
-<!-- ADD PRODUCT -->
-<form method="POST">
+<div class="billing-container">
+
+    <h2 class="page-title">Billing</h2>
+
+    <!-- ADD PRODUCT -->
+    <div class="billing-form">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <select name="product" class="input-field">
+                <option value="">Select Product</option>
+                {% for product in products %}
+                    <option value="{{ product.id }}">{{ product.name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="number" name="quantity" placeholder="Quantity" class="input-field">
+
+            <button type="submit" name="add" class="btn-primary">Add to Draft</button>
+
+        </form>
+
+    </div>
+
+    <!-- DRAFT TABLE -->
+    <div class="draft-section">
+
+        <h3>Draft</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <table class="billing-table">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>₹ {{ item.total }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No items added</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+    <!-- TOTAL -->
+    <div class="total-box">
+        Total Bill: ₹ {{ total }}
+    </div>
+
+    <!-- GENERATE -->
+    <form method="POST" action="{% url 'generate_bill' %}">
     {% csrf_token %}
+        <button type="submit" class="btn-success">
+            Generate Bill
+        </button>
+    </form>
 
-    <select name="product" required>
-        <option value="">Select Product</option>
-        {% for p in products %}
-            <option value="{{ p.id }}">{{ p.name }}</option>
-        {% endfor %}
-    </select>
-
-    <input type="number" name="quantity" placeholder="Quantity" required>
-
-    <button type="submit">Add to Draft</button>
-</form>
-
-<br>
-
-<!-- ITEMS TABLE -->
-<h2>Draft</h2>
-
-<table border="1">
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Total Amount</th>
-    </tr>
-
-    {% for item in items %}
-    <tr>
-        <td>{{ item.product.name }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.total }}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<h3>Total Bill Amount: {{ total }}</h3>
-
-<form method="POST" action="/billing/generate/">
-    {% csrf_token %}
-    <button type="submit">Generate Bill</button>
-</form>
+</div>
 
 {% endblock %}

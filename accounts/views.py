@@ -6,13 +6,7 @@ def user_management(request):
 
     error = ""
 
-    # DELETE USER
-    if request.GET.get('delete_user'):
-        user_id = request.GET.get('delete_user')
-        User.objects.filter(id=user_id).delete()
-        return redirect('/users/')
-
-    if request.method == "POST":
+    if request.method == "POST":                                         #validation for users based on roles
         username = request.POST.get('username')
         password = request.POST.get('password')
         role = request.POST.get('role')
@@ -35,7 +29,12 @@ def user_management(request):
 
                 return redirect('/users/')
 
-    # 🔥 SPLIT USERS BY ROLE
+    if request.GET.get('delete_user'):
+        user_id = request.GET.get('delete_user')
+        User.objects.filter(id=user_id).delete()
+        return redirect('/users/')
+
+
     admins = UserProfile.objects.filter(role='admin')
     managers = UserProfile.objects.filter(role='manager')
     staffs = UserProfile.objects.filter(role='staff')

@@ -1,0 +1,44 @@
+
+.manager-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.manager-navbar {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+}
+
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+
+.logout-btn {
+    background: #e74c3c;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+
+.manager-content {
+    padding: 20px;
+}

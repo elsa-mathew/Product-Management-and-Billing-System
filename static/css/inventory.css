@@ -1,0 +1,92 @@
+/* Container */
+.inventory-container {
+    padding: 20px;
+}
+
+/* Title */
+.page-title {
+    margin-bottom: 20px;
+}
+
+/* Card */
+.inventory-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Category title */
+.category-title {
+    margin-bottom: 15px;
+}
+
+/* Table */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header */
+.inventory-table th {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Cells */
+.inventory-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover */
+.inventory-table tr:hover {
+    background: #f9f9f9;
+}
+
+/* Status badges */
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Colors */
+.status.out {
+    background: #e74c3c;
+}
+
+.status.low {
+    background: #f39c12;
+}
+
+.status.in {
+    background: #2ecc71;
+}
+
+/* Buttons */
+.btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Add */
+.add {
+    background: #2ecc71;
+}
+
+/* Remove */
+.remove {
+    background: #e74c3c;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}

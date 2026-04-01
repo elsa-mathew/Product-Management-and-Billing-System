@@ -1,39 +1,63 @@
 {% extends 'admin_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/inventory.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h2>Inventory</h2>
+<div class="inventory-container">
+
+<h2 class="page-title">Inventory</h2>
 
 {% for section in data %}
 
-<h3>{{ section.category.name }}</h3>
+<div class="inventory-card">
 
-<table border="1">
-<tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Actions</th>
-</tr>
+    <h3 class="category-title">{{ section.category.name }}</h3>
 
-{% for item in section.items %}
-<tr>
-    <td>{{ item.product.name }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>
-        <a href="/inventory/?add={{ item.id }}">+</a>
-        <a href="/inventory/?remove={{ item.id }}">-</a>
-    </td>
-</tr>
-{% empty %}
-<tr>
-    <td colspan="3">No Products</td>
-</tr>
+    <table class="inventory-table">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+        {% if section.items %}
+            {% for item in section.items %}
+            <tr>
+                <td>{{ item.object.product.name }}</td>
+                <td>{{ item.object.quantity }}</td>
+
+                <td>
+                    {% if item.status == "Out of Stock" %}
+                        <span class="status out">Out of Stock</span>
+                    {% elif item.status == "Low Stock" %}
+                        <span class="status low">Low Stock</span>
+                    {% else %}
+                        <span class="status in">In Stock</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="?add={{ item.object.id }}" class="btn add">+</a>
+                    <a href="?remove={{ item.object.id }}" class="btn remove">-</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="4">No Products</td>
+        </tr>
+        {% endif %}
+    </table>
+
+</div>
+
 {% endfor %}
 
-</table>
-
-<br>
-
-{% endfor %}
+</div>
 
 {% endblock %}

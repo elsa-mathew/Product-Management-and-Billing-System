@@ -22,28 +22,28 @@ class BillItem(models.Model):
 
     def save(self, *args, **kwargs):
 
-    #get inventory
-        try:
+    
+        try:                                                                    #get inventory
             inventory_obj = Inventory.objects.get(product=self.product)
         except Inventory.DoesNotExist:
             raise ValidationError("Inventory not found")
 
-    #validation
-        if self.quantity <= 0:
+      
+        if self.quantity <= 0:                                                  #validation
             raise ValidationError("Quantity must be greater than 0")
 
         if self.quantity > inventory_obj.quantity:
             raise ValidationError("Not enough stock")
 
-    #set price (per item)
+    
         self.price = self.product.price
 
-    #reduce inventory
-        inventory_obj.quantity -= self.quantity
+    
+        inventory_obj.quantity -= self.quantity                                  #reduce inventory
         inventory_obj.save()
 
-    #save bill item
-        super().save(*args, **kwargs)
+    
+        super().save(*args, **kwargs)                                            #save bill item
         
 
     def __str__(self):

@@ -2,28 +2,36 @@
 
 {% block content %}
 
-<h1>Dashboard</h1>
+<div class="dashboard">
 
-<div class="cards">
-    <div class="card">
-        <h3>Total Products</h3>
-        <p>{{ total_products }}</p>
+    <h2>Dashboard</h2>
+  
+
+    <!-- CARDS -->
+    <div class="cards">
+
+        <div class="card">
+            <h3>{{ total_products }}</h3>
+            <p>Total Products</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ total_users }}</h3>
+            <p>Total Users</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ total_categories }}</h3>
+            <p>Categories</p>
+        </div>
+
+        <div class="card">
+            <h3>{{ low_stock }}</h3>
+            <p>Low Stock Items</p>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>Total Stock</h3>
-        <p>{{ total_stock }}</p>
-    </div>
-
-    <div class="card">
-        <h3>Total Bills</h3>
-        <p>{{ total_bills }}</p>
-    </div>
-
-    <div class="card">
-        <h3>Total Revenue</h3>
-        <p>{{ total_revenue }}</p>
-    </div>
 </div>
 
 {% endblock %}

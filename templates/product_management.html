@@ -1,78 +1,71 @@
 {% extends 'admin_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h2>Product Management</h2>
+<div class="product-container">
 
+    <h2 class="page-title">Product Management</h2>
 
-<h3>Add Category</h3>
+    {% if messages %}
+        <div class="message-box">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-{% if error %}
-    <p>{{ error }}</p>
-{% endif %}
+    <!-- CATEGORY SECTION -->
+    <div class="section">
 
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="category_name" placeholder="Category Name">
-    <button type="submit">Add Category</button>
-</form>
+        <h3 class="section-title">Add Category</h3>
 
-<h3>Categories</h3>
-<ul>
-    {% for cat in categories %}
-        <li>
-            {{ cat.name }}
-            <a href="/products/?delete_category={{ cat.id }}" style="color:red;">
-                Delete
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+        <form method="POST" class="form">
+            {% csrf_token %}
 
-<hr>
+            <input type="text" name="category_name" placeholder="Category Name" class="input-field" required>
 
+            <div class="btn-group">
+                <button type="submit" class="btn-primary">Add Category</button>
+                <a href="/products/categories/" class="btn-secondary">View Categories</a>
+            </div>
 
-<h3>Add Product</h3>
+        </form>
 
-<form method="POST">
-    {% csrf_token %}
+    </div>
 
-    <input type="text" name="product_name" placeholder="Product Name"><br><br>
+    <!-- PRODUCT SECTION -->
+    <div class="section">
 
-    <input type="number" name="price" placeholder="Price"><br><br>
+        <h3 class="section-title">Add Product</h3>
 
-    <select name="category">
-        <option value="">Select Category</option>
-        {% for cat in categories %}
-            <option value="{{ cat.id }}">{{ cat.name }}</option>
-        {% endfor %}
-    </select><br><br>
+        <form method="POST" class="form">
+            {% csrf_token %}
 
-    <button type="submit">Add Product</button>
-</form>
+            <input type="text" name="product_name" placeholder="Product Name" required class="input-field">
+            <input type="text" name="sku" placeholder="SKU" required class="input-field">
+            <input type="number" name="price" placeholder="Price" required class="input-field">
 
-<h3>Products</h3>
+            <select name="category" required class="input-field">
+                <option value="">Select Category</option>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
 
-<table border="1">
-<tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Category</th>
-    <th>Action</th>
-</tr>
+            <div class="btn-group">
+                <button type="submit" class="btn-primary">Add Product</button>
+                <a href="/products/view/" class="btn-secondary">View Products</a>
+            </div>
 
-{% for product in products %}
-<tr>
-    <td>{{ product.name }}</td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.category.name }}</td>
-    <td>
-        <a href="/products/?delete_product={{ product.id }}" style="color:red;">
-            Delete
-        </a>
-    </td>
-</tr>
-{% endfor %}
-</table>
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}
