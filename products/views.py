@@ -10,43 +10,43 @@ def product_management(request):
 
     if request.method == "POST":
 
-        # CATEGORY ADD
-        if request.POST.get('category_name'):
+        
+        if request.POST.get('category_name'):                                           #aceepting data                       
             name = request.POST.get('category_name')
 
             if name:
-                if Category.objects.filter(name__iexact=name).exists():
+                if Category.objects.filter(name__iexact=name).exists():                 #validating if category exists or not
                     messages.error(request,"Category already exists...")
                 else:
-                    Category.objects.create(name=name)
+                    Category.objects.create(name=name)                                 #creates new category
                     messages.success(request,"Category added Successfully")
             
             return redirect("/products/")
                
-        elif request.POST.get('product_name'):
+        elif request.POST.get('product_name'):                                         #accepting product data
             name = request.POST.get('product_name')
             price = request.POST.get('price')
             category_id = request.POST.get('category')
             sku = request.POST.get('sku').upper()
 
-            if not name or not price or not category_id or not sku:
+            if not name or not price or not category_id or not sku:                    
                 messages.error(request , "All fields required")
             else:
-                category = Category.objects.get(id=category_id)
+                category = Category.objects.get(id=category_id)                        #accepting category using id
 
-                if Product.objects.filter(sku=sku).exists():
+                if Product.objects.filter(sku=sku).exists():                           #validating sku of products. SKU for each product must be unique
                     messages.error(request , "SKU already exists")
                     
                 else:
 
-                    product = Product.objects.create(
+                    product = Product.objects.create(                                   #creating new product
                         name=name,
                         price=price,
                         category=category,
                         sku=sku
                     )
 
-                    Inventory.objects.create(product=product, quantity=0)
+                    Inventory.objects.create(product=product, quantity=0)              #creating inventory for the product
                     messages.success(request,"Product added Successfully")
                     return redirect('/products/')
 
@@ -58,7 +58,7 @@ def product_management(request):
     })
 
 
-def view_categories(request):
+def view_categories(request):                                                #manages category
 
     delete_id = request.GET.get('delete')
     if delete_id:
@@ -72,7 +72,7 @@ def view_categories(request):
         'categories': categories
     })
 
-def view_products(request):
+def view_products(request):                                                #manages product
     
     delete_id = request.GET.get('delete')
     if delete_id:

@@ -74,7 +74,7 @@ Description :
                     Description : This module handles billing operations, invoice generation, and bill history.
 
                     Functions:
-	                    •	Create new bill (session-based)
+	                    •	Create new bill
 	                    •	Add products to bill
 	                    •	Update quantity of products in bill
 	                    •	Prevent duplicate product entries (updates quantity instead)
@@ -236,6 +236,18 @@ product-management-and-billing-system/
 │   ├── admin_base.html
 │   ├── manager_base.html
 │   ├── staff_base.html
+│   ├── bill_details.html
+│   ├── bill_view.html
+│   ├── billing.html
+│   ├── dashboard.html
+│   ├── inventory.html
+│   ├── manager_dashboard.html
+│   ├── manager_inventory.html
+│   ├── product_management.html
+│   ├── staff_dashboard.html
+│   ├── user_management.html
+│   ├── view_categories.html
+│   ├── view_products.html
 │
 ├── static/                     # Static files (CSS)
 │   └── css/
@@ -252,11 +264,13 @@ product-management-and-billing-system/
 ├── db.sqlite3                  # Database file
 ├── manage.py                   # Django project manager
 ├── tests/                      # project test cases
-├── Docs/                       # project documentation folder
-│   ├── manage.py
-│   ├── manage.py
-│   ├── manage.py
-├── Screenshots/                # project output images
+│   ├── testcase_user.md
+│   ├── testcase_product.md
+│   ├── testcase_inventory.md
+│   ├── testcase_billing.md
+├── docs/                       # project documentation folder
+│   ├── flow_explanation.md
+│   ├── project_overview.md
 ├── README.md                   # project readme file
 └── requirements.txt            # Project dependencies
 

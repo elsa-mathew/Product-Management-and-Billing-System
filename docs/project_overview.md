@@ -4,7 +4,7 @@ Project Overview
 
 Introduction :
 
-    The Product Management and Billing System is a web-based application developed using Django (Python), HTML, and CSS to manage products, inventory, and billing operations efficiently. The system replaces manual processes with a digital solution, allowing users to manage product details, track inventory, and generate bills in an organized manner. It provides a structured interface for Admin, Manager, and Staff to perform their respective tasks.
+    The Product Management and Billing System is a web-based application developed using Django (Python), HTML, CSS, and JS to manage products, inventory, and billing operations efficiently. The system replaces manual processes with a digital solution, allowing users to manage product details, track inventory, and generate bills in an organized manner. It provides a structured interface for Admin, Manager, and Staff to perform their respective tasks.
 
 Objective :
 
@@ -33,7 +33,8 @@ User Roles :
     Admin :
         . Logs into the system as a superuser  
         . Manages users (Manager and Staff)  
-        . Controls products, categories, and overall system  
+        . Controls products, categories, and overall system 
+        . Manages Inventory 
         . Views all bills and inventory data  
 
     Manager :
@@ -89,7 +90,7 @@ Technology Stack :
 
 System Architecture :
 
-    The system follows a three-layer architecture consisting of frontend, backend, and database. The frontend is developed using HTML and CSS to provide the user interface. The backend is implemented using Django (Python), which handles routing, business logic, and data processing. The database (SQLite) stores all product, inventory, and billing data. User requests are processed through the Django server, which interacts with the database to retrieve or store data.
+    The system follows a three-layer architecture consisting of frontend, backend, and database. The frontend is developed using HTML, JS and CSS to provide the user interface. The backend is implemented using Django (Python), which handles routing, business logic, and data processing. The database (SQLite) stores all product, inventory, and billing data. User requests are processed through the Django server, which interacts with the database to retrieve or store data.
 
 Database Overview :
 
@@ -102,7 +103,7 @@ Modules Description :
         . User Management Module: Handles user creation, roles, and authentication  
         . Product & Category Module: Manages products and categories  
         . Inventory Module: Tracks stock levels and updates quantity  
-        . Billing Module: Handles bill creation, product addition, and total calculation  
+        . Billing Module: Handles bill and invoice creation, product addition, and total calculation  
 
 Input and Output :
 
@@ -118,8 +119,7 @@ Input and Output :
         . Display of product, inventory, and bill data  
 
 Limitations :
-
-    . Basic authentication system   
+   
     . No advanced reporting or analytics  
     . No online payment integration  
  

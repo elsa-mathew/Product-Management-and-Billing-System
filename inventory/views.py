@@ -4,9 +4,11 @@ from products.models import Category
 
 def inventory_page(request):
 
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated:                             #validating user profile becuase only admin and manager can use this page
         return redirect('/login/')
-    profile = getattr(request.user, 'userprofile', None)
+    profile = getattr(request.user, 'userprofile', None)              #helps to avoid crashing during validation because admin(super user) is not listed in the user profile table . 
+                                                                      #so when we call (request.user.userprofile) system didnt recognise admin and cause crash.
+                                                                      #here we used (None) . So even if table have no admin the profile value will be none. And system understand its the superuser admin.
     if request.user.is_superuser:
         role = 'admin'
     else:
@@ -16,7 +18,7 @@ def inventory_page(request):
 
     if request.GET.get('add'):                                          #update stock in inventory by 10
         inventory = Inventory.objects.get(id=request.GET.get('add'))
-        inventory.quantity += 10
+        inventory.quantity += 10                                         #increase stock by 10 count
         inventory.save()
         return redirect('/inventory/')
 
@@ -24,7 +26,7 @@ def inventory_page(request):
         inventory = Inventory.objects.get(id=request.GET.get('remove'))
 
         if inventory.quantity > 0:
-            inventory.quantity -= 1
+            inventory.quantity -= 1                                     #reduce stock by 1 count
             inventory.save()
 
         return redirect('/inventory/')
@@ -32,8 +34,8 @@ def inventory_page(request):
     categories = Category.objects.all()
 
     data = []
-    for cat in categories:
-        items = Inventory.objects.filter(product__category_id=cat.id)
+    for category in categories:
+        items = Inventory.objects.filter(product__category_id=category.id)
         item_list = []
 
         for item in items:
@@ -50,8 +52,8 @@ def inventory_page(request):
                 'object' : item,
                 'status' : status
             })
-        data.append({
-            'category': cat,
+        data.append({                                          #appending products category wise
+            'category': category,
             'items': item_list
         })
 
