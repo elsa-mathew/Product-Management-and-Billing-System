@@ -1,18 +1,18 @@
-/* Reset */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Layout */
+
 .layout {
     display: flex;
     min-height: 100vh;
     font-family: Arial, sans-serif;
 }
 
-/* Sidebar */
+
 .sidebar {
     width: 220px;
     background: #2c3e50;
@@ -22,12 +22,12 @@
     height: 100%;
 }
 
-/* Sidebar title */
+
 .sidebar h2 {
     margin-bottom: 30px;
 }
 
-/* Links */
+
 .sidebar a {
     display: block;
     color: white;
@@ -38,14 +38,12 @@
     transition: 0.3s;
 }
 
-/* Hover */
+
 .sidebar a:hover {
     background: #34495e;
 }
 
 
-
-/* Main content */
 .main {
     margin-left: 220px;
     padding: 25px;
@@ -56,7 +54,7 @@
 
 /*dashboard*/
 
-/* Dashboard */
+
 .dashboard h2 {
     margin-bottom: 10px;
 }
@@ -66,14 +64,14 @@
     color: #555;
 }
 
-/* Cards container */
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
-/* Card */
+
 .card {
     background: white;
     padding: 20px;
@@ -83,18 +81,18 @@
     transition: 0.3s;
 }
 
-/* Hover effect */
+
 .card:hover {
     transform: translateY(-5px);
 }
 
-/* Numbers */
+
 .card h3 {
     font-size: 28px;
     color: #2c3e50;
 }
 
-/* Label */
+
 .card p {
     margin-top: 10px;
     color: #777;

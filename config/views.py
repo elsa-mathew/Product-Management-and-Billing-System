@@ -31,12 +31,11 @@ def login_view(request):
                 profile = UserProfile.objects.get(user=user)
             except UserProfile.DoesNotExist:
                 return render(request,'login.html' , {'error' : 'User role not assigned'})
-            # MANAGER LOGIN
+
             if profile.role == "manager":
                 return redirect('/manager/dashboard/')
                
 
-            # STAFF LOGIN
             elif profile.role == "staff":
                 return redirect('staff_dashboard')
 
@@ -50,7 +49,6 @@ def dashboard(request):
     total_users = UserProfile.objects.count()
     total_categories = Category.objects.count()
 
-    # low stock (example logic)
     low_stock = Inventory.objects.filter(quantity__lt=5).count()
 
     return render(request, 'dashboard.html', {

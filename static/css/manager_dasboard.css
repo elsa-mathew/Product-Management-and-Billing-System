@@ -1,9 +1,8 @@
-/* Container */
 .dashboard-container {
     padding: 30px;
 }
 
-/* Title */
+
 .page-title {
     font-size: 24px;
     font-weight: 600;
@@ -11,14 +10,13 @@
     color: #333;
 }
 
-/* Cards layout */
 .dashboard-cards {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
 
-/* Card base */
+
 .card {
     flex: 1;
     min-width: 200px;
@@ -30,27 +28,26 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Hover effect */
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Card title */
+
 .card h3 {
     font-size: 16px;
     color: #777;
     margin-bottom: 10px;
 }
 
-/* Numbers */
 .card p {
     font-size: 28px;
     font-weight: bold;
     color: #222;
 }
 
-/* Color variations */
+
 .card.low {
     border-left: 5px solid #f39c12; /* orange */
 }

@@ -11,13 +11,13 @@
 
     <div class="invoice-card">
 
-        <!-- HEADER -->
+        
         <div class="invoice-header">
             <h2>Invoice</h2>
             <p>Bill ID: #{{ bill.id }}</p>
         </div>
 
-        <!-- TABLE -->
+        
         <table class="bill-table">
             <tr>
                 <th>Product</th>
@@ -40,12 +40,12 @@
             {% endfor %}
         </table>
 
-        <!-- TOTAL -->
+        
         <div class="invoice-total">
             <h3>Total Amount: ₹{{ total }}</h3>
         </div>
 
-        <!-- ACTION -->
+        
         <div class="invoice-actions">
             <button onclick="window.print()" class="btn-print">Print</button>
         </div>

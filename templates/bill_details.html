@@ -16,6 +16,7 @@
         <table class="bill-table">
             <tr>
                 <th>Bill ID</th>
+                <th>Date and time</th>
                 <th>Total</th>
                 <th>Action</th>
             </tr>
@@ -23,6 +24,7 @@
             {% for bill in bills %}
             <tr>
                 <td>#{{ bill.id }}</td>
+                <td class="date">{{ bill.created_at }}</td>
                 <td class="amount">₹{{ bill.total }}</td>
                 <td>
                     <a href="/billing/view/{{ bill.id }}/" class="btn-view">View</a>

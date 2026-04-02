@@ -11,7 +11,7 @@
 
     <h2 class="page-title">Billing</h2>
 
-    <!-- ADD PRODUCT -->
+  
     <div class="billing-form">
 
         <form method="POST">
@@ -32,7 +32,7 @@
 
     </div>
 
-    <!-- DRAFT TABLE -->
+   
     <div class="draft-section">
 
         <h3>Draft</h3>
@@ -65,12 +65,12 @@
 
     </div>
 
-    <!-- TOTAL -->
+   
     <div class="total-box">
         Total Bill: ₹ {{ total }}
     </div>
 
-    <!-- GENERATE -->
+  
     <form method="POST" action="{% url 'generate_bill' %}">
     {% csrf_token %}
         <button type="submit" class="btn-success">

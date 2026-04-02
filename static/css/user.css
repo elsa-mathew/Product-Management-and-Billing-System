@@ -1,9 +1,9 @@
-/* Container */
+
 .user-container {
     padding: 20px;
 }
 
-/* Titles */
+
 .page-title {
     margin-bottom: 20px;
 }
@@ -16,7 +16,7 @@
     margin: 15px 0 10px;
 }
 
-/* Card */
+
 .section {
     background: white;
     padding: 20px;
@@ -25,14 +25,14 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Form */
+
 .form {
     display: flex;
     flex-direction: column;
     width: 300px;
 }
 
-/* Inputs */
+
 .input-field {
     padding: 10px;
     margin-bottom: 12px;
@@ -40,7 +40,7 @@
     border-radius: 5px;
 }
 
-/* Button */
+
 .btn-primary {
     background: #2ecc71;
     color: white;
@@ -55,14 +55,14 @@
     background: #27ae60;
 }
 
-/* Table */
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-/* Header */
+
 .data-table th {
     background: #2c3e50;
     color: white;
@@ -70,18 +70,16 @@
     text-align: left;
 }
 
-/* Cells */
+
 .data-table td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-/* Hover */
 .data-table tr:hover {
     background: #f9f9f9;
 }
 
-/* Delete button */
 .btn-danger {
     background: #e74c3c;
     color: white;
@@ -94,7 +92,7 @@
     background: #c0392b;
 }
 
-/* Error */
+
 .error {
     color: red;
     margin-bottom: 10px;
